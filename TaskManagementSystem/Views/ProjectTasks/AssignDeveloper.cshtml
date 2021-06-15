@@ -1,0 +1,38 @@
+﻿@model TaskManagementSystem.Models.ProjectTask
+@{
+    ViewBag.Title = "AssignDeveloper";
+}
+
+<h2>Assign Developer</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <hr />
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            Select the Developer: @Html.DropDownList("ApplicationUserId")
+        </div>
+
+        <button type="submit" value="Add">
+            Assign Developer
+        </button>
+    </div>
+}
+
+<br />
+
+@*<div>
+        <button class="question" type="button">
+            <p class="link">
+                @Html.ActionLink("Back to Question", "Details", new { id = Model.Id }, new { style = "color: white;text-decoration:none" })
+            </p>
+        </button>
+        <button class="question" type="button">
+            <p class="link">
+                @Html.ActionLink("Create Tag", "Create", "Tags", null, new { style = "color: white;text-decoration:none" })
+            </p>
+        </button>
+    </div>*@
+

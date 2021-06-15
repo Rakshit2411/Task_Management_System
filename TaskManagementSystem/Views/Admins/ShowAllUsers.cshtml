@@ -1,0 +1,40 @@
+﻿@model List<TaskManagementSystem.Models.ApplicationUser>
+@{ ViewBag.Title = "ShowAllUsers"; }
+
+<h2>Show All Users</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            UserName
+        </th>
+        <th>Salary</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.Salary)</td>
+            <td>
+                <button class="question3" type="button" style="background: dodgerblue;">
+                    <p class="link"> @Html.ActionLink("ShowTheRoles", "AllRoles", new { userId = item.Id }, new { style = "color: white;text-decoration:none" }) </p>
+                </button>
+                <button class="question3" type="button" style="background: dodgerblue;">
+                    <p class="link"> @Html.ActionLink("Assign Role", "AddUserToRole", new { userId = item.Id }, new { style = "color: white;text-decoration:none" }) </p>
+                </button>
+                <button class="question3" type="button" style="background: dodgerblue;">
+                    <p class="link"> @Html.ActionLink("Set Salary", "SetSalary", new { userId = item.Id }, new { style = "color: white;text-decoration:none" }) </p>
+                </button>
+            </td>
+        </tr>
+}
+
+</table>
+<button class="question" type="button">
+    <p class="link"> @Html.ActionLink("Go to Projects", "Index", "Projects", null, new { style = "color: white;text-decoration:none" }) </p>
+</button>
+

@@ -1,0 +1,78 @@
+﻿@model TaskManagementSystem.Models.ProjectTask
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProjectTask</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Project Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Task Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompletionPercentage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompletionPercentage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCompleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCompleted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priority)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deadline)
+        </dt>
+
+        <dd>
+            @if (Model.Deadline == null)
+            {<p>—</p> }
+            else
+            { @Html.DisplayFor(model => model.Deadline)}
+        </dd>
+    </dl>
+</div>
+
+<button class="question" type="button">
+    <p class="link"> @Html.ActionLink("Go to Notifications", "Index", "Notifications", null, new { style = "color: white;text-decoration:none" }) </p>
+</button>
+<button class="question" type="button">
+    <p class="link"> @Html.ActionLink("Go to Projects", "Index", "Projects", null, new { style = "color: white;text-decoration:none" }) </p>
+</button>

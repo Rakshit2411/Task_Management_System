@@ -1,0 +1,49 @@
+﻿@model IEnumerable<TaskManagementSystem.Models.Notification>
+
+@{
+    ViewBag.Title = "AllNotifications";
+}
+
+<h2>AllNotifications</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+        </td>
+        <td>
+            Open Notification :
+            <a href="@Url.Action("OpenNotification", "Notifications", new { id=item.Id })">
+                @Html.DisplayFor(modelItem => item.Content)
+            </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+        <td>
+            <button type="submit" class="question"><p class="link"> @Html.ActionLink("Delete", "Delete", "Notifications", new { id = item.Id }, new { style = "color: white;text-decoration:none" }) </p></button>
+        </td>
+    </tr>
+}
+</table>
+
+<button class="question" type="button">
+    <p class="link"> @Html.ActionLink("Back to Dashboard", "AllProjects", "Projects", null, new { style = "color: white;text-decoration:none" }) </p>
+</button>
+<button class="question" type="button">
+    <p class="link"> @Html.ActionLink("Back to All Tasks", "AllTasks", "ProjectTasks", null, new { style = "color: white;text-decoration:none" }) </p>
+</button>

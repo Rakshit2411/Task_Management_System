@@ -1,0 +1,76 @@
+﻿@model TaskManagementSystem.Models.Notification
+
+@{
+    ViewBag.Title = "OpenNotification";
+}
+
+<h2>OpenNotification</h2>
+
+<div>
+    <h4>Notification</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Email)
+        </dd>
+        @if (Model.Project != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Project.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Project.Name)
+            </dd>
+        }
+
+        @if (Model.ProjectTask != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.ProjectTask.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProjectTask.Name)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOpened)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsOpened)
+        </dd>
+
+    </dl>
+</div>
+<button class="question" type="button">
+    <p class="link"> @Html.ActionLink("Back to Dashboad", "AllProjects", "Projects", null, new { style = "color: white;text-decoration:none" }) </p>
+</button>
+<button class="question" type="button">
+    <p class="link"> @Html.ActionLink("Back to Notifications", "Index", null, new { style = "color: white;text-decoration:none" }) </p>
+</button>
+<button class="question" type="button">
+    <p class="link"> @Html.ActionLink("Go to Task", "Details", "ProjectTasks", new { id = Model.ProjectTaskId }, new { style = "color: white;text-decoration:none" }) </p>
+</button>

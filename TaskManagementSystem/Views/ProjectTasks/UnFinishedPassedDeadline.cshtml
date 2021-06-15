@@ -1,0 +1,87 @@
+﻿@model IEnumerable<TaskManagementSystem.Models.ProjectTask>
+
+@{
+    ViewBag.Title = "UnFinishedPassedDeadline";
+}
+
+<h2>Unfinished tasks that passed deadline</h2>
+
+<button class="question" type="button"><p class="link"> @Html.ActionLink("Create New", "Create", null, new { style = "color: white;text-decoration:none" }) </p></button>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </th>
+        <th>
+            Project Name
+        </th>
+        <th>
+            Task Name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompletionPercentage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsCompleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Priority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deadline)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="prog">
+                <div class="percentages">
+                    @Html.DisplayFor(modelItem => item.CompletionPercentage)%
+                </div>
+                <div class="bar">
+                    <progress max="100" value="@item.CompletionPercentage"></progress>
+                </div>
+            </td>
+            @if (item.Priority == TaskManagementSystem.Models.Priority.Low)
+            {
+                <td style="color:white" })>
+                    <div class="tagL">@Html.DisplayFor(modelItem => item.Priority)</div>
+                </td>
+            }
+            else if (item.Priority == TaskManagementSystem.Models.Priority.Medium)
+            {
+                <td style="color:white" })>
+                    <div class="tagM">@Html.DisplayFor(modelItem => item.Priority)</div>
+                </td>
+            }
+            else if (item.Priority == TaskManagementSystem.Models.Priority.High)
+            {
+                <td style="color:white" })>
+                    <div class="tagH">@Html.DisplayFor(modelItem => item.Priority)</div>
+                </td>
+            }
+            else if (item.Priority == TaskManagementSystem.Models.Priority.None)
+            {
+                <td style="color:white" })>
+                    <div class="tagN">@Html.DisplayFor(modelItem => item.Priority)</div>
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.Deadline)
+            </td>
+        </tr>
+    }
+</table>
+<button class="question" type="button">
+    <p class="link"> @Html.ActionLink("Back to Dashboard", "Index", "Projects", null, new { style = "color: white;text-decoration:none" }) </p>
+</button>

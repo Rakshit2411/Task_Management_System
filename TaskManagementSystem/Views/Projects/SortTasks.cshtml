@@ -1,0 +1,113 @@
+﻿@model TaskManagementSystem.Models.Project
+
+@{
+    ViewBag.Title = "Tasks In Project";
+}
+
+<h2>Project Details</h2>
+
+<div class="navigate">
+    <div class="nav1">
+        <b>Project Creator</b> : @Html.DisplayFor(model => model.ApplicationUser.Email)
+        <br />
+        <b>Project Name</b> : @Html.DisplayFor(model => model.Name)
+        <br />
+        <b>@Html.DisplayNameFor(model => model.Priority)</b> : @Html.DisplayFor(model => model.Priority)
+        <br />
+        <div class="create">
+            <a class="link" href="@Url.Action("Create", "ProjectTasks", new { style = "color: white;text-decoration:none" })">
+                Create New Task
+            </a>
+        </div>
+    </div>
+    <div class="navigate">
+        <div>
+            <button class="question" type="button"><p class="link"> @Html.ActionLink("Hide Completed", "SortTasks", new { sortBy = "hideCompleted", projectId = Model.Id }, new { style = "color: white;text-decoration:none" }) </p></button>
+        </div>
+        <div>
+            <button class="question" type="button" style="margin-left: 6px"><p class="link"> @Html.ActionLink("Sort By Priority", "SortTasks", new { sortBy = "priority", projectId = Model.Id }, new { style = "color: white;text-decoration:none" }) </p></button>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<b style="font-size:17px">@Html.DisplayNameFor(model => model.ProjectTasks)</b>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Email")
+        </th>
+        <th>
+            @Html.DisplayName("Project Name")
+        </th>
+        <th>
+            @Html.DisplayName("task Name")
+        </th>
+        <th>
+            @Html.DisplayName("CompletionPercentage")
+        </th>
+        <th>
+            @Html.DisplayName("IsCompleted")
+        </th>
+        <th>
+            @Html.DisplayName("Priority")
+        </th>
+    </tr>
+
+    @foreach (var task in Model.ProjectTasks)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => task.ApplicationUser.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => task.Project.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => task.Name)
+            </td>
+            <td class="prog">
+                <div class="percentages">
+                    @Html.DisplayFor(modelItem => task.CompletionPercentage)%
+                </div>
+                <div class="bar">
+                    <progress max="100" value="@task.CompletionPercentage"></progress>
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => task.IsCompleted)
+            </td>
+            @if (task.Priority == TaskManagementSystem.Models.Priority.Low)
+            {
+                <td style="color:white" })>
+                    <div class="tagL">@Html.DisplayFor(modelItem => task.Priority)</div>
+                </td>
+            }
+            else if (task.Priority == TaskManagementSystem.Models.Priority.Medium)
+            {
+                <td style="color:white" })>
+                    <div class="tagM">@Html.DisplayFor(modelItem => task.Priority)</div>
+                </td>
+            }
+            else if (task.Priority == TaskManagementSystem.Models.Priority.High)
+            {
+                <td style="color:white" })>
+                    <div class="tagH">@Html.DisplayFor(modelItem => task.Priority)</div>
+                </td>
+            }
+            else if (task.Priority == TaskManagementSystem.Models.Priority.None)
+            {
+                <td style="color:white" })>
+                    <div class="tagN">@Html.DisplayFor(modelItem => task.Priority)</div>
+                </td>
+            }
+        </tr>
+    }
+</table>
+
+<div class="question2">
+    <a class="link" href="@Url.Action("Index", new { style = "color: white;text-decoration:none" })">
+        Back to Dashboard
+    </a>
+</div>
